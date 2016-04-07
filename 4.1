@@ -1,0 +1,44 @@
+1.总结：这周学习了C++的4个特性：继承，多态，抽象和封装。主要学习了继承和派生， 还有运算符的重载，学会了对已定义类的利用，还有一些注意的事情，  继承时的继承类型，public private 和 protected， 对成员数据和成员函数的使用限制。 还有基类与派生类之间的转换。
+对运算符的重载，+,-,*,/  等，学会了对运算符+的重载，对复数的加法运算。
+2.下周学习多态性和一些C++知识。
+
+3.#include<iostream>
+using namespace std;
+class Complex
+{
+	public:
+	    Complex(){real=0;imag=0;}
+		Complex(int r,int i){real=r;imag=i;}
+		Complex operator+(Complex &);
+		Complex cinn();
+		void display();
+	private:
+		int real;
+		int imag;
+};
+Complex Complex::operator+(Complex &c2)
+{
+	Complex c;
+	return Complex(real+c2.real,imag+c2.imag);
+}
+void Complex::display()
+{
+	cout<<"("<<real<<"+"<<imag<<"i)"<<endl;
+}
+Complex Complex::cinn()
+{
+	Complex c4;
+	cout<<"请输入一个复数的实部和虚部："<<endl;
+	cin>>c4.real>>c4.imag;
+	return c4;
+}
+int main()
+{
+	Complex c1,c2,c3,c4;
+	c1=c1.cinn();c2=c2.cinn();
+	cout<<"c1=";c1.display();
+	cout<<"c2=";c2.display();
+	c3=c1+c2;
+	cout<<"c1+c2=";c3.display();
+	return 0;
+}
