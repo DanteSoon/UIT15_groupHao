@@ -1,0 +1,120 @@
+总结：上周和本周学习c++面向对象4个特性，抽象，封装，多态，继承，具体学习继承及其派生类，学习运算符重载，实现了用
+运算符重载实现复数相加，用继承及派生将基类图形类派生出两个子类，矩形类和三角形类，并继承基类的保护成员，分别计算
+出矩形和三角形的面积。
+
+计划：下周学习多态与虚函数。
+
+经验分享：1.运算符重载复数相加
+#include<iostream>
+using namespace std;
+class Complex
+{public:
+   Complex()
+   {
+	   real=0;
+	   imag=0;
+   }
+  
+   Complex(int r,int i)
+   {
+	   real=r;
+	   imag=i;
+   }
+   Complex operator+(Complex &c2);
+
+   void display();
+ private:
+	 int real;
+	 int imag;
+};
+Complex Complex::operator+(Complex &c2)
+{
+	Complex c;
+	c.real=real+c2.real;
+	c.imag=imag+c2.imag;
+	return c;
+}
+
+void Complex::display()
+{
+	cout<<real<<"+"<<imag<<"i"<<endl;
+}
+int main()
+{
+	int a,b,c,d;
+	cout<<"请输入第1个复数的实部：";
+	cin>>a;
+    cout<<"请输入第1个复数的虚部：";
+	cin>>b;
+    cout<<"请输入第2个复数的实部：";
+	cin>>c;
+    cout<<"请输入第2个复数的虚部：";
+	cin>>d;
+    Complex	c1(a,b),c2(c,d),c3;
+	c3=c1+c2;
+	cout<<"c1=";
+	c1.display();
+	cout<<"c2=";
+	c2.display();
+	cout<<"c1+c2=";
+	c3.display();
+    return 0;	
+}
+2.矩形类和三角形类继承图形类
+#include<iostream>
+using namespace std;
+class Shape
+{public:
+     void lh()
+	 {
+		 leng=0;
+		 high=0;
+	 }
+
+ protected:
+	 int leng;
+	 int high;
+};
+class Rec:private Shape
+{public:
+     int area(int l,int h)
+	 {
+		 int s;
+		 leng=l;
+		 high=h;
+		 s=leng*high;
+		 return s;
+	 }
+
+};
+class Tri:private Shape
+{public:
+     int area(int l,int h)
+	 {
+		 int s1,s2;
+		 leng=l;
+		 high=h;
+		 s1=leng*high;
+		 s2=s1/2;
+		 return s2;
+
+	 }
+};
+int main()
+{
+	int l,h;
+	cout<<"请输入图形的底长:";
+	cin>>l;
+	cout<<"请输入图形的高:";
+	cin>>h;
+	Rec r;
+	Tri t;
+	cout<<"矩形的面积为"<<r.area(l,h)<<endl;
+	cout<<"三角形面积为"<<t.area(l,h)<<endl;
+	return 0;
+}
+第4,5周周报
+2016 4.1-4.8
+马旭东
+
+
