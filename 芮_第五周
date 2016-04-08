@@ -1,0 +1,72 @@
+本周学习了运算符重载，继承，派生，保护成员。
+
+下周多态，虚函数，HTTP。
+
+
+
+
+//  main.cpp
+//  sanjiao
+//
+//  Created by 纪璎芮 on 16/4/7.
+//  Copyright © 2016年 纪璎芮. All rights reserved.
+//
+
+#include <iostream>
+
+using namespace std;
+class Tri
+{
+    public :
+    void num()
+    {
+        length=0;
+        wide=0;
+    }
+    
+protected:
+    int length;
+    int wide;
+    
+};
+class Tri1:private Tri
+{
+public:
+    int get(int l,int w)
+    {
+        int s;
+        length=l;
+        wide=w;
+        s=length*wide;
+        return s;
+    }
+    
+};
+
+class Tri2:private Tri{
+public:
+    int get1(int l,int w)
+    {
+        int s1,s2;
+        length=l;
+        wide=w;
+        s1=length*wide;
+        s2=s1/2;
+        return s2;
+    }
+};
+
+int main()
+{
+    int l;
+    int w;
+    Tri1 T1;
+    Tri2 T2;
+    cout<<"请输入长或者底面：";
+    cin>>l;
+    cout<<"请输入宽或者高：";
+    cin>>w;
+    cout<<"矩形面积为:"<<T1.get(l,w)<<endl;
+    cout<<"三角形面积为:"<<T2.get1(l,w)<<endl;
+    return 0;
+}
