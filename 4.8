@@ -1,0 +1,66 @@
+1.本周总结：这周学习了运算符的重载做了一些练习，对一些运算符的重载会有一些限制，如>> 和 <<；
+还有图形类的派生继承求矩形类和等腰三角形类的面积。。运用友元函数进行输入，用成员函数area进行求面积同时输出结果。
+2.下周： 学习多态性和虚函数的内容，且做一些练习，对其更加了解、熟练。
+3.#include<iostream>
+using namespace std;
+class Fingure//图形类
+{
+public:
+	Fingure():height(1),width(1){}		
+	Fingure(double h,double w):height(h),width(w){}
+protected:
+	double height;
+	double width;
+};
+class Rectangle:public Fingure//矩形类
+{
+public:
+	Rectangle(double,double);
+	void area(Rectangle &R);
+	friend Rectangle cinr(Rectangle &);
+private:
+	double R_area;
+};
+class Triangle:public Fingure//等腰三角形类
+{
+public:
+	Triangle(double,double);
+	void area(Triangle &T);
+	friend Triangle cint(Triangle &);
+private:
+	double T_area;
+};
+Rectangle::Rectangle(double h,double w):Fingure(h,w){}
+void Rectangle::area(Rectangle &R)
+{
+	R_area=height*width;
+	cout<<"矩形面积= "<<R_area<<endl;
+}
+Triangle::Triangle(double h,double w):Fingure(h,w){}
+void Triangle::area(Triangle &T)
+{
+	T_area=0.5*height*width;
+	cout<<"等腰三角形面积= "<<T_area<<endl;
+}
+Rectangle cinr(Rectangle &R)
+{
+	cout<<"请输入矩形的高度和宽度："<<endl;
+	cin>>R.height>>R.width;
+	return R;
+}
+Triangle cint(Triangle &T)
+{
+	cout<<"请输入等腰三角形的高度和宽度："<<endl;
+	cin>>T.height>>T.width;
+	return T;
+}
+void main()
+{
+	Rectangle R1=cinr(R1);
+	Triangle T1=cint(T1);
+	R1.area(R1);	
+	T1.area(T1);
+}/*定义一个图形类，其中有保护类型的成员数据：高度和宽度，一个公有的构造函数。
+	由该图形类建立两个派生类：矩形类和等腰三角形类。
+	  在每个派生类中都包含一个函数area（），  
+分别用来计算矩形和等腰三角形的面积。*/
